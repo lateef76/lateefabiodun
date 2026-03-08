@@ -48,7 +48,7 @@ const Navbar = () => {
               className="flex items-center space-x-2 text-xl sm:text-2xl font-bold text-primary-600"
             >
               <Code2 className="w-6 h-6 sm:w-8 sm:h-8" />
-              <span className="font-display">&lt;YourName /&gt;</span>
+              <span className="font-display">Abiodun Lateef</span>
             </Link>
 
             {/* Desktop Navigation */}

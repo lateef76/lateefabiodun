@@ -110,7 +110,7 @@ const About = () => {
           >
             <motion.div variants={itemVariants}>
               <h3 className="text-2xl sm:text-3xl font-display font-bold text-secondary-900 dark:text-white mb-4">
-                Who is <span className="text-gradient">Your Name?</span>
+                Who is <span className="text-gradient">Abiodun Lateef?</span>
               </h3>
               <div className="space-y-4 text-secondary-600 dark:text-secondary-400 text-sm sm:text-base">
                 <p>

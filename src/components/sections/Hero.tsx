@@ -96,7 +96,7 @@ const Hero = () => {
                 Hi, I'm{" "}
               </span>
               <span className="text-gradient block sm:inline-block">
-                Your Name
+                Abiodun Lateef
               </span>
             </motion.h1>
 
@@ -206,7 +206,7 @@ const Hero = () => {
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-secondary-700 shadow-2xl">
                 <img
                   src="/images/profile.jpg"
-                  alt="Your Name"
+                  alt="Abiodun Lateef"
                   className="w-full h-full object-cover"
                 />
               </div>

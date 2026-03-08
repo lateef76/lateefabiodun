@@ -284,7 +284,7 @@ const Contact = () => {
                     htmlFor="name"
                     className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2"
                   >
-                    Your Name *
+                    Abiodun Lateef *
                   </label>
                   <input
                     type="text"
