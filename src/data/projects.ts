@@ -1,83 +1,77 @@
 import type { Project } from '@types'
+import uccmasterImg from '../assets/images/uccmaster.png'
+import nafiapparelImg from '../assets/images/nafiapparel.png'
+import rmragencyImg from '../assets/images/rmragency.png'
+import adetechImg from '../assets/images/adetech.png'
 
 export const projects: Project[] = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    description: 'A modern e-commerce platform with cart functionality, user authentication, and payment integration.',
-    longDescription: 'Built a full-featured e-commerce platform from scratch. Features include product browsing, search and filters, shopping cart, user authentication, order management, and Stripe payment integration. The admin panel allows for product and inventory management.',
-    image: '/images/projects/ecommerce.jpg',
-    technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'Redux', 'Stripe'],
-    liveUrl: 'https://ecommerce-demo.com',
-    githubUrl: 'https://github.com/yourusername/ecommerce',
+    title: 'UccMaster Quiz App',
+    description: 'An interactive learning platform designed to help University of Cape Coast students master their courses through engaging quizzes.',
+    longDescription: 'UccMaster is a comprehensive quiz application built to support University of Cape Coast students in their academic journey. The platform features an extensive library of quiz questions across multiple subjects, real-time progress tracking, detailed performance analytics, and personalized study recommendations. Students can practice, compete with peers, and monitor their improvement over time.',
+    image: uccmasterImg,
+    technologies: ['React', 'TypeScript', 'Vercel', 'Node.js', 'MongoDB', 'Tailwind CSS'],
+    liveUrl: 'https://uccmaster-io.vercel.app/',
     featured: true,
     category: 'fullstack',
-    completionDate: '2023-12-15'
+    completionDate: '2024-01-20',
+    tags: {
+      difficulty: 'advanced',
+      buildTime: '3 months',
+      teamSize: '1 person'
+    }
   },
   {
     id: 2,
-    title: 'Task Management App',
-    description: 'A collaborative task management tool with real-time updates and team features.',
-    longDescription: 'Developed a Trello-like task management application. Users can create boards, lists, and cards. Features include drag-and-drop, real-time updates via WebSockets, file attachments, comments, and team collaboration. Includes dark mode and mobile-responsive design.',
-    image: '/images/projects/taskapp.jpg',
-    technologies: ['React', 'TypeScript', 'Firebase', 'Tailwind CSS', 'DnD Kit', 'Express'],
-    liveUrl: 'https://taskapp-demo.com',
-    githubUrl: 'https://github.com/yourusername/taskapp',
+    title: "Nafi's Apparel E-Commerce",
+    description: 'A modern e-commerce platform showcasing fashion items with seamless shopping experience and secure payment integration.',
+    longDescription: "Nafi's Apparel is a fully-featured e-commerce website built for an online fashion store. The platform includes product catalog with search and filtering, shopping cart with real-time updates, user authentication and account management, secure checkout process, order tracking, and admin dashboard for inventory management. The design is responsive and optimized for both mobile and desktop experiences.",
+    image: nafiapparelImg,
+    technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'Stripe', 'Tailwind CSS'],
+    liveUrl: 'https://apparel-nafi-io-nf6r.vercel.app/',
     featured: true,
     category: 'fullstack',
-    completionDate: '2023-09-20'
+    completionDate: '2024-02-10',
+    tags: {
+      difficulty: 'advanced',
+      buildTime: '2.5 months',
+      teamSize: '1 person'
+    }
   },
   {
     id: 3,
-    title: 'Weather Dashboard',
-    description: 'A beautiful weather application with 5-day forecasts and interactive maps.',
-    longDescription: 'Created a weather dashboard using OpenWeatherMap API. Features include current weather, 5-day forecast, search by city, interactive maps, and weather alerts. Implemented geolocation for local weather and saved favorite locations.',
-    image: '/images/projects/weather.jpg',
-    technologies: ['React', 'JavaScript', 'Chart.js', 'OpenWeather API', 'CSS Modules'],
-    liveUrl: 'https://weather-demo.com',
-    githubUrl: 'https://github.com/yourusername/weather-app',
-    featured: false,
+    title: 'RMR Agency - AI Automation Portfolio',
+    description: 'A professional portfolio website showcasing AI automation services and agency capabilities with modern design.',
+    longDescription: 'RMR Agency is a sophisticated portfolio and services website designed to showcase AI automation solutions for businesses. The platform features detailed service descriptions, client case studies, project portfolios, and a contact system for inquiries. It highlights the agency\'s expertise in automation, AI integration, and digital transformation with interactive elements and smooth animations.',
+    image: rmragencyImg,
+    technologies: ['React', 'TypeScript', 'Framer Motion', 'Tailwind CSS', 'Node.js', 'Contact Forms'],
+    liveUrl: 'https://rmragency-io.vercel.app/',
+    featured: true,
     category: 'frontend',
-    completionDate: '2023-06-10'
+    completionDate: '2024-02-25',
+    tags: {
+      difficulty: 'intermediate',
+      buildTime: '1.5 months',
+      teamSize: '1 person'
+    }
   },
   {
     id: 4,
-    title: 'Social Media Dashboard',
-    description: 'Analytics dashboard for social media metrics with beautiful charts.',
-    longDescription: 'Built a comprehensive social media analytics dashboard. Integrates with multiple social media APIs to display followers, engagement, and post performance. Features interactive charts, date range selection, and export functionality.',
-    image: '/images/projects/dashboard.jpg',
-    technologies: ['React', 'TypeScript', 'D3.js', 'Express', 'PostgreSQL', 'OAuth'],
-    liveUrl: 'https://dashboard-demo.com',
-    githubUrl: 'https://github.com/yourusername/social-dashboard',
+    title: 'AdeTech Invoice & Sales Manager',
+    description: 'A comprehensive invoicing and sales tracking app that helps businesses manage transactions, print receipts, and monitor sales performance.',
+    longDescription: 'AdeTech is an enterprise-level invoicing and sales management application designed for small to medium businesses. Features include invoice generation, sales tracking with analytics, customer management, receipt printing, payment recording, sales reports with charts, and export functionality. The app provides real-time insights into business performance and helps streamline the sales and invoicing process.',
+    image: adetechImg,
+    technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'Chart.js', 'Print.js'],
+    liveUrl: 'https://adetech.vercel.app/',
     featured: true,
     category: 'fullstack',
-    completionDate: '2023-03-05'
-  },
-  {
-    id: 5,
-    title: 'Portfolio Website',
-    description: 'A modern, responsive portfolio website with smooth animations.',
-    longDescription: 'Designed and developed a personal portfolio to showcase projects and skills. Features smooth animations with Framer Motion, dark/light mode, fully responsive design, and optimized performance.',
-    image: '/images/projects/portfolio.jpg',
-    technologies: ['React', 'TypeScript', 'Framer Motion', 'Tailwind CSS', 'Vite'],
-    liveUrl: 'https://yourportfolio.com',
-    githubUrl: 'https://github.com/yourusername/portfolio',
-    featured: false,
-    category: 'frontend',
-    completionDate: '2024-01-15'
-  },
-  {
-    id: 6,
-    title: 'Chat Application',
-    description: 'Real-time chat app with private rooms and file sharing.',
-    longDescription: 'Developed a real-time chat application similar to Slack. Features include public and private channels, direct messaging, file uploads, emoji support, and message search. Built with Socket.io for real-time communication.',
-    image: '/images/projects/chat.jpg',
-    technologies: ['React', 'Socket.io', 'Node.js', 'MongoDB', 'Express', 'JWT'],
-    liveUrl: 'https://chat-demo.com',
-    githubUrl: 'https://github.com/yourusername/chat-app',
-    featured: true,
-    category: 'fullstack',
-    completionDate: '2023-08-12'
+    completionDate: '2024-03-05',
+    tags: {
+      difficulty: 'advanced',
+      buildTime: '2 months',
+      teamSize: '1 person'
+    }
   }
 ]
 

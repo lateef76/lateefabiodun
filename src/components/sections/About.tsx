@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Award, Code2, Users, Target, Zap, BookOpen } from "lucide-react";
+import { Code2, Zap, Users, BookOpen, Target, Lightbulb } from "lucide-react";
 import SectionTitle from "@components/ui/SectionTitle";
 
 const About = () => {
@@ -13,54 +13,51 @@ const About = () => {
   const stats = [
     {
       icon: Code2,
-      value: "3+",
-      label: "Years Experience",
-      color: "from-blue-500 to-blue-600",
-    },
-    {
-      icon: Award,
-      value: "25+",
-      label: "Projects Completed",
-      color: "from-purple-500 to-purple-600",
-    },
-    {
-      icon: Users,
-      value: "15+",
-      label: "Happy Clients",
-      color: "from-green-500 to-green-600",
+      value: "2+",
+      label: "Years of Experience",
     },
     {
       icon: Target,
-      value: "100%",
-      label: "Client Satisfaction",
-      color: "from-orange-500 to-orange-600",
+      value: "10+",
+      label: "Projects Completed",
+    },
+    {
+      icon: Users,
+      value: "10+",
+      label: "Happy Clients",
     },
   ];
 
-  const qualities = [
+  const highlights = [
     {
       icon: Zap,
-      title: "Fast Learner",
-      description:
-        "Quickly adapt to new technologies and frameworks, always staying up-to-date with industry trends.",
+      title: "Fast & Efficient",
+      description: "Quick to adapt to new technologies and deliver results",
     },
     {
       icon: Code2,
       title: "Clean Code",
-      description:
-        "Write maintainable, scalable, and well-documented code following best practices and design patterns.",
+      description: "Maintainable, scalable code following best practices",
     },
     {
       icon: Users,
       title: "Team Player",
-      description:
-        "Excellent communication skills and experience working in agile teams across different time zones.",
+      description: "Excellent collaboration and communication skills",
     },
     {
       icon: BookOpen,
-      title: "Continuous Learning",
-      description:
-        "Constantly expanding my knowledge through courses, workshops, and side projects.",
+      title: "Always Learning",
+      description: "Constantly expanding knowledge and staying current",
+    },
+    {
+      icon: Lightbulb,
+      title: "Problem Solver",
+      description: "Creative solutions with technical excellence",
+    },
+    {
+      icon: Target,
+      title: "Detail Oriented",
+      description: "Attention to detail in every aspect of work",
     },
   ];
 
@@ -87,183 +84,99 @@ const About = () => {
   };
 
   return (
-    <section
-      id="about"
-      className="section-padding bg-white dark:bg-secondary-900"
-    >
+    <section id="about" className="section-padding bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           title="About Me"
-          subtitle="Get to know me better and discover what drives my passion for web development"
+          subtitle="Discover who I am and what drives my passion for creating digital experiences"
           align="center"
           gradient
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Left Column - Bio */}
+        <motion.div
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="max-w-4xl mx-auto space-y-6"
+        >
+          {/* Intro Card */}
           <motion.div
-            ref={ref}
-            variants={containerVariants}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            className="space-y-6"
+            variants={itemVariants}
+            className="bg-linear-to-br from-white to-primary-50 rounded-2xl p-8 sm:p-10 border border-primary-100 shadow-lg"
           >
-            <motion.div variants={itemVariants}>
-              <h3 className="text-2xl sm:text-3xl font-display font-bold text-secondary-900 dark:text-white mb-4">
-                Who is <span className="text-gradient">Abiodun Lateef?</span>
-              </h3>
-              <div className="space-y-4 text-secondary-600 dark:text-secondary-400 text-sm sm:text-base">
-                <p>
-                  I'm a passionate web developer with over 3 years of experience
-                  creating beautiful and functional web applications. My journey
-                  in web development started during my college years, and since
-                  then, I've never stopped learning and improving my skills.
-                </p>
-                <p>
-                  I specialize in React and TypeScript, but I'm always excited
-                  to explore new technologies and frameworks. I believe in
-                  writing clean, maintainable code and creating intuitive user
-                  experiences that make a difference.
-                </p>
-                <p>
-                  When I'm not coding, you can find me reading tech blogs,
-                  contributing to open-source projects, or exploring the latest
-                  trends in web development. I'm also an avid coffee enthusiast
-                  and love hiking on weekends.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Stats Grid */}
-            <motion.div
-              variants={containerVariants}
-              className="grid grid-cols-2 gap-4 pt-4"
-            >
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="relative overflow-hidden rounded-xl bg-linear-to-br from-secondary-50 to-secondary-100 dark:from-secondary-800 dark:to-secondary-700 p-4 sm:p-6 shadow-lg"
-                >
-                  <div
-                    className={`absolute top-0 right-0 w-20 h-20 bg-linear-to-br ${stat.color} opacity-10 rounded-bl-full`}
-                  />
-                  <stat.icon
-                    className={`w-6 h-6 sm:w-8 sm:h-8 mb-2 text-transparent bg-linear-to-br ${stat.color} bg-clip-text`}
-                  />
-                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-secondary-900 dark:text-white">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs sm:text-sm text-secondary-600 dark:text-secondary-400">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+            <h3 className="text-2xl sm:text-3xl font-bold text-secondary-900 mb-4">
+              Hi, I'm <span className="text-gradient">Abiodun Lateef</span>
+            </h3>
+            <p className="text-lg text-secondary-700 leading-relaxed mb-4">
+              I'm a passionate full-stack developer with 2+ years of experience
+              building beautiful and functional web applications. I love turning
+              ideas into reality through clean code and innovative design.
+            </p>
+            <p className="text-base text-secondary-600 leading-relaxed">
+              My expertise lies in React, TypeScript, and modern web
+              technologies. I'm dedicated to creating exceptional user
+              experiences while maintaining code quality and best practices. I'm
+              always eager to learn new technologies and tackle challenging
+              problems.
+            </p>
           </motion.div>
 
-          {/* Right Column - Qualities & Image */}
+          {/* Stats Cards */}
           <motion.div
             variants={containerVariants}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            className="space-y-6"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4"
           >
-            {/* Image Card */}
-            <motion.div
-              variants={itemVariants}
-              className="relative rounded-2xl overflow-hidden shadow-2xl"
-            >
-              <img
-                src="/images/about.jpg"
-                alt="About me"
-                className="w-full h-48 sm:h-64 object-cover"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 text-white">
-                <p className="text-sm sm:text-base font-medium">Based in</p>
-                <p className="text-lg sm:text-xl font-bold">
-                  San Francisco, CA
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="bg-white rounded-xl p-6 sm:p-8 border-2 border-primary-100 shadow-md text-center hover:shadow-xl transition-all duration-300"
+              >
+                <div className="flex justify-center mb-3">
+                  <stat.icon className="w-8 h-8 text-primary-600" />
+                </div>
+                <p className="text-4xl font-bold bg-linear-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent mb-2">
+                  {stat.value}
                 </p>
-              </div>
-            </motion.div>
+                <p className="text-sm text-secondary-600 font-medium">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
 
-            {/* Qualities Grid */}
-            <motion.div
-              variants={containerVariants}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-            >
-              {qualities.map((quality, index) => (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.02, x: 5 }}
-                  className="flex items-start gap-3 p-4 rounded-xl bg-secondary-50 dark:bg-secondary-800/50 hover:bg-secondary-100 dark:hover:bg-secondary-800 transition-all duration-300 cursor-default"
-                >
+          {/* Highlights Grid */}
+          <motion.div
+            variants={containerVariants}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+          >
+            {highlights.map((highlight, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ x: 5, y: -3 }}
+                className="bg-white rounded-xl p-6 border border-secondary-200 shadow-sm hover:shadow-md hover:border-primary-200 transition-all duration-300"
+              >
+                <div className="flex gap-4">
                   <div className="shrink-0">
-                    <div className="p-2 rounded-lg bg-primary-100 dark:bg-primary-900/30">
-                      <quality.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600 dark:text-primary-400" />
+                    <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary-100">
+                      <highlight.icon className="w-5 h-5 text-primary-600" />
                     </div>
                   </div>
-                  <div>
-                    <h4 className="text-sm sm:text-base font-semibold text-secondary-900 dark:text-white mb-1">
-                      {quality.title}
+                  <div className="flex-1">
+                    <h4 className="text-base font-semibold text-secondary-900 mb-1">
+                      {highlight.title}
                     </h4>
-                    <p className="text-xs sm:text-sm text-secondary-600 dark:text-secondary-400">
-                      {quality.description}
+                    <p className="text-sm text-secondary-600">
+                      {highlight.description}
                     </p>
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Fun Fact */}
-            <motion.div
-              variants={itemVariants}
-              className="p-4 rounded-xl bg-linear-to-r from-primary-500 to-primary-600 text-white"
-            >
-              <p className="text-sm sm:text-base font-medium">
-                💡 Fun fact: I've built over 25 projects and contributed to 10+
-                open-source repositories!
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Tech Stack Icons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="mt-12 text-center"
-        >
-          <p className="text-sm sm:text-base text-secondary-600 dark:text-secondary-400 mb-4">
-            Tech stack I work with
-          </p>
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-            {[
-              "React",
-              "TypeScript",
-              "Next.js",
-              "Node.js",
-              "Python",
-              "Tailwind",
-              "MongoDB",
-              "GraphQL",
-            ].map((tech, index) => (
-              <motion.span
-                key={tech}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.9 + index * 0.1 }}
-                whileHover={{ scale: 1.1, y: -2 }}
-                className="px-3 py-1 sm:px-4 sm:py-2 bg-white dark:bg-secondary-800 rounded-full shadow-md text-xs sm:text-sm font-medium text-secondary-700 dark:text-secondary-300 border border-secondary-200 dark:border-secondary-700"
-              >
-                {tech}
-              </motion.span>
+                </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

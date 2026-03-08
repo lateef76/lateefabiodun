@@ -3,81 +3,110 @@ import {
   Heart,
   Github,
   Linkedin,
-  Twitter,
   Mail,
   MapPin,
-  Phone,
+  MessageCircle,
+  ArrowUp,
+  Code2,
 } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com/yourusername", label: "GitHub" },
+    {
+      icon: Github,
+      href: "https://github.com/lateef76",
+      label: "GitHub",
+    },
     {
       icon: Linkedin,
-      href: "https://linkedin.com/in/yourusername",
+      href: "https://www.linkedin.com/in/lateef-abiodun-7813a4354",
       label: "LinkedIn",
     },
     {
-      icon: Twitter,
-      href: "https://twitter.com/yourusername",
-      label: "Twitter",
+      icon: MessageCircle,
+      href: "https://wa.me/233532344630",
+      label: "WhatsApp",
     },
-    { icon: Mail, href: "mailto:your.email@example.com", label: "Email" },
+    {
+      icon: Mail,
+      href: "mailto:lateefabiodun76@gmail.com",
+      label: "Email",
+    },
   ];
 
-  const quickLinks = [
+  const navLinks = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
+    { name: "Experience", href: "#experience" },
+    { name: "Skills", href: "#skills" },
     { name: "Contact", href: "#contact" },
   ];
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="bg-secondary-900 text-white mt-auto">
+    <footer className="relative bg-gray-950 text-white mt-auto overflow-hidden">
+      {/* Subtle top gradient line */}
+      <div className="h-1 w-full bg-linear-to-r from-blue-600 via-purple-600 to-blue-600" />
+
       {/* Main Footer */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {/* About Section */}
-          <div className="space-y-4">
-            <h3 className="text-xl sm:text-2xl font-display font-bold text-white">
-              &lt;YourName /&gt;
-            </h3>
-            <p className="text-secondary-400 text-sm sm:text-base leading-relaxed">
-              Creating beautiful and functional web experiences. Let's build
-              something amazing together.
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+          {/* Brand Section */}
+          <div className="lg:col-span-5 space-y-5">
+            <div className="flex items-center gap-2">
+              <Code2 className="w-7 h-7 text-blue-400" />
+              <h3 className="text-2xl font-bold tracking-tight">
+                Abiodun<span className="text-blue-400">.</span>dev
+              </h3>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+              Full-stack developer passionate about crafting beautiful,
+              performant web experiences. Based in Cape Coast, Ghana — open to
+              remote opportunities worldwide.
             </p>
-            <div className="flex space-x-3">
-              {socialLinks.map((social, index) => (
+            <div className="flex items-center gap-2 text-gray-500 text-sm">
+              <MapPin className="w-4 h-4" />
+              <span>Cape Coast, Ghana • University of Cape Coast</span>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex gap-3 pt-2">
+              {socialLinks.map((social) => (
                 <motion.a
-                  key={index}
+                  key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ y: -3 }}
+                  whileHover={{ y: -4, scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-secondary-800 hover:bg-primary-600 flex items-center justify-center transition-colors duration-300"
+                  className="w-10 h-10 rounded-xl bg-gray-800/80 hover:bg-blue-600 flex items-center justify-center transition-colors duration-300"
                   aria-label={social.label}
                 >
-                  <social.icon className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <social.icon className="w-4 h-4" />
                 </motion.a>
               ))}
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="text-lg sm:text-xl font-semibold text-white">
-              Quick Links
+          <div className="lg:col-span-3">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-5">
+              Navigation
             </h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
+            <ul className="space-y-3">
+              {navLinks.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-secondary-400 hover:text-primary-400 transition-colors duration-300 text-sm sm:text-base inline-block"
+                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm inline-flex items-center gap-2 group"
                   >
+                    <span className="w-1.5 h-1.5 rounded-full bg-gray-700 group-hover:bg-blue-500 transition-colors" />
                     {link.name}
                   </a>
                 </li>
@@ -85,69 +114,70 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div className="space-y-4">
-            <h4 className="text-lg sm:text-xl font-semibold text-white">
+          {/* Contact + CTA */}
+          <div className="lg:col-span-4 space-y-5">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-5">
               Get in Touch
             </h4>
-            <ul className="space-y-3">
-              <li className="flex items-start space-x-3 text-secondary-400">
-                <MapPin className="w-5 h-5 shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base">Your City, Country</span>
-              </li>
-              <li className="flex items-center space-x-3 text-secondary-400">
-                <Phone className="w-5 h-5 shrink-0" />
-                <span className="text-sm sm:text-base">+1 234 567 890</span>
-              </li>
-              <li className="flex items-center space-x-3 text-secondary-400">
-                <Mail className="w-5 h-5 shrink-0" />
-                <a
-                  href="mailto:your.email@example.com"
-                  className="text-sm sm:text-base hover:text-primary-400 transition-colors"
-                >
-                  your.email@example.com
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Newsletter or Additional Info */}
-          <div className="space-y-4">
-            <h4 className="text-lg sm:text-xl font-semibold text-white">
-              Newsletter
-            </h4>
-            <p className="text-secondary-400 text-sm sm:text-base">
-              Subscribe for updates on new projects and articles.
-            </p>
-            <form className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="flex-1 px-3 py-2 sm:px-4 sm:py-3 bg-secondary-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-white text-sm sm:text-base"
-              />
-              <button
-                type="submit"
-                className="px-4 py-2 sm:px-6 sm:py-3 bg-primary-600 hover:bg-primary-700 rounded-lg font-semibold transition-colors duration-300 text-sm sm:text-base whitespace-nowrap"
+            <div className="space-y-3">
+              <a
+                href="mailto:lateefabiodun76@gmail.com"
+                className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm"
               >
-                Subscribe
-              </button>
-            </form>
+                <Mail className="w-4 h-4 text-blue-400" />
+                lateefabiodun76@gmail.com
+              </a>
+              <a
+                href="https://wa.me/233532344630"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                <MessageCircle className="w-4 h-4 text-green-400" />
+                +233 53 234 4630
+              </a>
+            </div>
+
+            {/* CTA */}
+            <div className="mt-6 p-5 rounded-xl bg-gray-800/50 border border-gray-800">
+              <p className="text-sm text-gray-300 mb-3">
+                Have a project in mind?
+              </p>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors"
+              >
+                Let's Talk
+                <span className="text-lg">→</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-secondary-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
-            <p className="text-secondary-400 text-xs sm:text-sm text-center sm:text-left">
-              © {currentYear} YourName. All rights reserved.
+      <div className="border-t border-gray-800/80">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-5">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p className="text-gray-500 text-xs sm:text-sm text-center sm:text-left">
+              © {currentYear} Abiodun Lateef. All rights reserved.
             </p>
-            <p className="text-secondary-400 text-xs sm:text-sm flex items-center">
-              Made with{" "}
-              <Heart className="w-3 h-3 sm:w-4 sm:h-4 mx-1 text-red-500 fill-current" />{" "}
-              using React & Tailwind
-            </p>
+            <div className="flex items-center gap-4">
+              <p className="text-gray-500 text-xs sm:text-sm flex items-center">
+                Built with{" "}
+                <Heart className="w-3.5 h-3.5 mx-1 text-red-500 fill-current" />{" "}
+                using React & Tailwind
+              </p>
+              <motion.button
+                onClick={scrollToTop}
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.9 }}
+                className="w-9 h-9 rounded-lg bg-gray-800 hover:bg-blue-600 flex items-center justify-center transition-colors duration-300"
+                aria-label="Back to top"
+              >
+                <ArrowUp className="w-4 h-4" />
+              </motion.button>
+            </div>
           </div>
         </div>
       </div>

@@ -10,26 +10,26 @@ export const navLinks = [
 export const socialLinks = [
   {
     name: 'GitHub',
-    url: 'https://github.com/yourusername',
+    url: 'https://github.com/lateef76',
     icon: 'Github',
-    username: '@yourusername'
+    username: '@lateef76'
   },
   {
     name: 'LinkedIn',
-    url: 'https://linkedin.com/in/yourusername',
+    url: 'https://www.linkedin.com/in/lateef-abiodun-7813a4354',
     icon: 'Linkedin',
-    username: 'yourusername'
+    username: 'lateefabiodun'
   },
   {
-    name: 'Twitter',
-    url: 'https://twitter.com/yourusername',
-    icon: 'Twitter',
-    username: '@yourusername'
+    name: 'WhatsApp',
+    url: 'https://wa.me/233532344630',
+    icon: 'MessageCircle',
+    username: '+233 53 234 4630'
   },
   {
     name: 'Email',
-    url: 'mailto:your.email@example.com',
+    url: 'mailto:lateefabiodun76@gmail.com',
     icon: 'Mail',
-    username: 'your.email@example.com'
+    username: 'lateefabiodun76@gmail.com'
   }
 ]

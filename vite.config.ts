@@ -14,8 +14,6 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
       '@components': path.resolve(__dirname, './src/components'),
       '@pages': path.resolve(__dirname, './src/pages'),
-      '@hooks': path.resolve(__dirname, './src/hooks'),
-      '@utils': path.resolve(__dirname, './src/utils'),
       '@types': path.resolve(__dirname, './src/types'),
       '@data': path.resolve(__dirname, './src/data'),
       '@assets': path.resolve(__dirname, './src/assets'),
@@ -33,8 +31,7 @@ export default defineConfig({
         manualChunks: {
           // Bundling core dependencies together for better caching
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          // Updated for the modern 'motion' package name
-          animations: ['motion'],
+          animations: ['framer-motion'],
         },
       },
     },

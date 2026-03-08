@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { ArrowDown, Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import Button from "@components/ui/Button";
+import profileImage from "../../assets/images/picture-removebg-preview.png";
 
 const Hero = () => {
   const [ref, inView] = useInView({
@@ -15,16 +16,28 @@ const Hero = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const imageVariants: Variants = {
+    hidden: { scale: 0.9, opacity: 0 },
+    visible: {
+      scale: 1,
       opacity: 1,
       transition: {
         duration: 0.8,
@@ -33,40 +46,15 @@ const Hero = () => {
     },
   };
 
-  const imageVariants: Variants = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        duration: 1,
-        ease: "easeOut" as const,
-      },
-    },
-  };
-
-  const socialVariants: Variants = {
-    hidden: { x: -20, opacity: 0 },
-    visible: (i: number) => ({
-      x: 0,
-      opacity: 1,
-      transition: {
-        delay: 0.8 + i * 0.1,
-        type: "spring" as const,
-        stiffness: 100,
-      },
-    }),
-  };
-
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-linear-to-br from-primary-50 via-white to-secondary-50 dark:from-secondary-900 dark:via-secondary-800 dark:to-primary-900/20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white pt-20"
     >
-      {/* Background decoration */}
+      {/* Background gradient */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse animation-delay-2000" />
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-2000" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -75,43 +63,37 @@ const Hero = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center"
         >
-          {/* Content */}
-          <div className="flex-1 text-center lg:text-left">
+          {/* Left Content */}
+          <div className="flex flex-col justify-center">
             {/* Greeting */}
-            <motion.span
-              variants={itemVariants}
-              className="inline-block text-sm sm:text-base font-semibold text-primary-600 dark:text-primary-400 mb-2 sm:mb-3"
-            >
-              👋 Welcome to my portfolio
-            </motion.span>
-
-            {/* Name */}
-            <motion.h1
-              variants={itemVariants}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold mb-4"
-            >
-              <span className="text-secondary-900 dark:text-white">
-                Hi, I'm{" "}
+            <motion.div variants={itemVariants}>
+              <span className="inline-block px-4 py-2 bg-primary-50 text-primary-600 font-semibold text-sm rounded-full mb-6">
+                👋 Welcome to my portfolio
               </span>
-              <span className="text-gradient block sm:inline-block">
-                Abiodun Lateef
-              </span>
-            </motion.h1>
+            </motion.div>
 
-            {/* Title */}
+            {/* Main Heading */}
+            <motion.div variants={itemVariants}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-4 leading-tight">
+                <span className="text-secondary-900">Hi, I'm </span>
+                <span className="text-gradient">Abiodun</span>
+              </h1>
+            </motion.div>
+
+            {/* Subtitle */}
             <motion.h2
               variants={itemVariants}
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-secondary-700 dark:text-secondary-300 mb-4"
+              className="text-xl sm:text-2xl md:text-3xl text-secondary-600 font-medium mb-6"
             >
-              Web Developer & UI/UX Enthusiast
+              Full Stack Developer & UI/UX Enthusiast
             </motion.h2>
 
             {/* Description */}
             <motion.p
               variants={itemVariants}
-              className="text-sm sm:text-base md:text-lg text-secondary-600 dark:text-secondary-400 mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0"
+              className="text-base sm:text-lg text-secondary-600 mb-8 max-w-2xl leading-relaxed"
             >
               I create beautiful, responsive web applications with modern
               technologies. Passionate about crafting exceptional user
@@ -121,7 +103,7 @@ const Hero = () => {
             {/* CTA Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-6 sm:mb-8"
+              className="flex flex-col sm:flex-row gap-4"
             >
               <Button
                 size="lg"
@@ -130,9 +112,8 @@ const Hero = () => {
                     .getElementById("contact")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="w-full sm:w-auto"
               >
-                Hire Me
+                Get In Touch
               </Button>
               <Button
                 variant="outline"
@@ -142,79 +123,34 @@ const Hero = () => {
                     .getElementById("projects")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="w-full sm:w-auto"
               >
-                View Projects
+                View My Work
               </Button>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              variants={itemVariants}
-              className="flex items-center justify-center lg:justify-start gap-3 sm:gap-4"
-            >
-              {[
-                {
-                  icon: Github,
-                  href: "https://github.com/yourusername",
-                  label: "GitHub",
-                },
-                {
-                  icon: Linkedin,
-                  href: "https://linkedin.com/in/yourusername",
-                  label: "LinkedIn",
-                },
-                {
-                  icon: Twitter,
-                  href: "https://twitter.com/yourusername",
-                  label: "Twitter",
-                },
-                {
-                  icon: Mail,
-                  href: "mailto:your.email@example.com",
-                  label: "Email",
-                },
-              ].map((social, index) => (
-                <motion.a
-                  key={social.label}
-                  custom={index}
-                  variants={socialVariants}
-                  whileHover={{ y: -3, scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 sm:p-3 rounded-lg bg-white dark:bg-secondary-800 shadow-md hover:shadow-xl transition-all duration-300 text-secondary-700 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                </motion.a>
-              ))}
             </motion.div>
           </div>
 
-          {/* Image */}
+          {/* Right Image */}
           <motion.div
             variants={imageVariants}
-            className="flex-1 flex justify-center lg:justify-end"
+            className="hidden md:flex justify-center lg:justify-end"
           >
-            <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
-              {/* Background decoration */}
+            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+              {/* Glowing background */}
               <div className="absolute inset-0 bg-linear-to-r from-primary-400 to-primary-600 rounded-full blur-2xl opacity-20 animate-pulse" />
 
               {/* Image container */}
-              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-secondary-700 shadow-2xl">
+              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary-100 shadow-2xl">
                 <img
-                  src="/images/profile.jpg"
+                  src={profileImage}
                   alt="Abiodun Lateef"
                   className="w-full h-full object-cover"
                 />
               </div>
 
-              {/* Floating elements */}
+              {/* Floating badge */}
               <motion.div
                 animate={{
-                  y: [0, -10, 0],
+                  y: [0, -15, 0],
                   rotate: [0, 5, 0],
                 }}
                 transition={{
@@ -222,45 +158,29 @@ const Hero = () => {
                   repeat: Infinity,
                   ease: "easeInOut" as const,
                 }}
-                className="absolute -top-4 -right-4 w-12 h-12 sm:w-16 sm:h-16 bg-primary-500 rounded-full flex items-center justify-center text-white text-lg sm:text-xl font-bold shadow-lg"
+                className="absolute -top-6 -right-6 w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-xl border-4 border-primary-100"
               >
-                ✦
-              </motion.div>
-
-              <motion.div
-                animate={{
-                  y: [0, 10, 0],
-                  rotate: [0, -5, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut" as const,
-                  delay: 1,
-                }}
-                className="absolute -bottom-4 -left-4 w-10 h-10 sm:w-14 sm:h-14 bg-secondary-500 rounded-full flex items-center justify-center text-white text-base sm:text-lg font-bold shadow-lg"
-              >
-                ⚡
+                <span className="text-3xl">⚡</span>
               </motion.div>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          transition={{ delay: 1.5, duration: 0.8 }}
+          className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 hidden sm:block"
         >
           <motion.a
             href="#about"
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="flex flex-col items-center text-secondary-600 dark:text-secondary-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+            transition={{ duration: 2, repeat: Infinity }}
+            className="flex flex-col items-center text-secondary-600 hover:text-primary-600 transition-colors"
           >
-            <span className="text-xs sm:text-sm mb-2">Scroll Down</span>
-            <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="text-sm mb-2 font-medium">Scroll Down</span>
+            <ArrowDown className="w-5 h-5" />
           </motion.a>
         </motion.div>
       </div>

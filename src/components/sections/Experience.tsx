@@ -1,12 +1,9 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Briefcase, GraduationCap, Award, Download } from "lucide-react";
+import { Briefcase, GraduationCap, Calendar, MapPin } from "lucide-react";
 import SectionTitle from "@components/ui/SectionTitle";
-import TimelineItem from "@components/ui/TimelineItem";
-import Button from "@components/ui/Button";
-import Card from "@components/ui/Card";
-import { experiences, education, certifications } from "@data/experience";
+import { experiences, education } from "@data/experience";
 
 const Experience = () => {
   const [ref, inView] = useInView({
@@ -14,40 +11,25 @@ const Experience = () => {
     threshold: 0.1,
   });
 
-  const [activeTab, setActiveTab] = useState<
-    "work" | "education" | "certifications"
-  >("work");
-
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       },
     },
   };
 
-  const tabVariants = {
-    inactive: { scale: 1 },
-    active: { scale: 1.05 },
-  };
-
-  const contentVariants = {
-    hidden: { opacity: 0, x: -20 },
+  const itemVariants: Variants = {
+    hidden: { y: 30, opacity: 0 },
     visible: {
+      y: 0,
       opacity: 1,
-      x: 0,
       transition: {
-        duration: 0.4,
+        duration: 0.6,
         ease: "easeOut" as const,
-      },
-    },
-    exit: {
-      opacity: 0,
-      x: 20,
-      transition: {
-        duration: 0.3,
       },
     },
   };
@@ -55,214 +37,196 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="section-padding bg-white dark:bg-secondary-900"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white py-20"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle
-          title="Experience & Education"
-          subtitle="My professional journey and academic background"
-          align="center"
-          gradient
-        />
+      {/* Background gradient blobs */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-2000" />
+      </div>
 
-        {/* Tab Navigation */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12">
-          {[
-            { id: "work", label: "Work Experience", icon: Briefcase },
-            { id: "education", label: "Education", icon: GraduationCap },
-            { id: "certifications", label: "Certifications", icon: Award },
-          ].map((tab) => (
-            <motion.button
-              key={tab.id}
-              variants={tabVariants}
-              animate={activeTab === tab.id ? "active" : "inactive"}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setActiveTab(tab.id as typeof activeTab)}
-              className={`
-                relative flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-medium text-sm sm:text-base
-                transition-all duration-300 overflow-hidden
-                ${
-                  activeTab === tab.id
-                    ? "text-white"
-                    : "text-secondary-700 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400"
-                }
-              `}
-            >
-              {activeTab === tab.id && (
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute inset-0 bg-primary-600"
-                  transition={{ type: "spring", duration: 0.5 }}
-                />
-              )}
-              <tab.icon className="relative z-10 w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="relative z-10">{tab.label}</span>
-            </motion.button>
-          ))}
-        </div>
-
-        {/* Content Area */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="max-w-3xl mx-auto"
+          className="flex flex-col items-center"
         >
-          <AnimatePresence mode="wait">
-            {/* Work Experience */}
-            {activeTab === "work" && (
-              <motion.div
-                key="work"
-                variants={contentVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="space-y-6"
-              >
-                {experiences.map((exp, index) => (
-                  <TimelineItem
-                    key={exp.id}
-                    item={exp}
-                    type="work"
-                    index={index}
-                  />
-                ))}
+          {/* Section Title */}
+          <motion.div variants={itemVariants} className="mb-12 text-center">
+            <SectionTitle
+              title="Experience & Education"
+              subtitle="My professional journey and academic background"
+              align="center"
+              gradient
+            />
+          </motion.div>
 
-                {/* Download Resume Button */}
+          {/* Work Experience Section */}
+          <motion.div
+            variants={containerVariants}
+            className="w-full max-w-4xl mb-16"
+          >
+            <motion.h3
+              variants={itemVariants}
+              className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3"
+            >
+              <Briefcase className="w-8 h-8 text-blue-600" />
+              Work Experience
+            </motion.h3>
+
+            <div className="space-y-6">
+              {experiences.map((exp) => (
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="text-center mt-8"
+                  key={exp.id}
+                  variants={itemVariants}
+                  whileHover={{ y: -5 }}
+                  className="bg-white rounded-xl border border-gray-200 p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    icon={<Download className="w-4 h-4 sm:w-5 sm:h-5" />}
-                    iconPosition="left"
-                    onClick={() => window.open("/resume.pdf", "_blank")}
-                  >
-                    Download Full Resume
-                  </Button>
+                  {/* Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+                    <div>
+                      <h4 className="text-xl font-bold text-gray-900 mb-1">
+                        {exp.position}
+                      </h4>
+                      <p className="text-blue-600 font-semibold">
+                        {exp.company}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-1 text-gray-600 text-sm">
+                      <Calendar className="w-4 h-4" />
+                      <span>
+                        {exp.startDate} - {exp.endDate}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Location */}
+                  <div className="flex items-center gap-2 text-gray-600 mb-4">
+                    <MapPin className="w-4 h-4" />
+                    <span className="text-sm">{exp.location}</span>
+                  </div>
+
+                  {/* Description */}
+                  <ul className="space-y-2 mb-6">
+                    {exp.description.map((desc, i) => (
+                      <li key={i} className="flex gap-3 text-gray-700">
+                        <span className="text-blue-600 mt-1">•</span>
+                        <span>{desc}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2">
+                    {exp.technologies.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full border border-blue-200"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </motion.div>
-              </motion.div>
-            )}
+              ))}
+            </div>
+          </motion.div>
 
-            {/* Education */}
-            {activeTab === "education" && (
-              <motion.div
-                key="education"
-                variants={contentVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="space-y-6"
-              >
-                {education.map((edu, index) => (
-                  <TimelineItem
-                    key={edu.id}
-                    item={edu}
-                    type="education"
-                    index={index}
-                  />
-                ))}
-              </motion.div>
-            )}
+          {/* Education Section */}
+          <motion.div variants={containerVariants} className="w-full max-w-4xl">
+            <motion.h3
+              variants={itemVariants}
+              className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3"
+            >
+              <GraduationCap className="w-8 h-8 text-green-600" />
+              Education
+            </motion.h3>
 
-            {/* Certifications */}
-            {activeTab === "certifications" && (
-              <motion.div
-                key="certifications"
-                variants={contentVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
-              >
-                {certifications.map((cert, index) => (
-                  <motion.div
-                    key={cert.id}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ y: -5, scale: 1.02 }}
-                  >
-                    <Card
-                      className="h-full cursor-pointer"
-                      onClick={() => window.open(cert.link, "_blank")}
-                    >
-                      <div className="flex items-start gap-4">
-                        {/* Certification Image */}
-                        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg overflow-hidden bg-secondary-100 dark:bg-secondary-800 shrink-0">
-                          <img
-                            src={cert.image}
-                            alt={cert.issuer}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
+            <div className="space-y-6">
+              {education.map((edu) => (
+                <motion.div
+                  key={edu.id}
+                  variants={itemVariants}
+                  whileHover={{ y: -5 }}
+                  className="bg-white rounded-xl border border-gray-200 p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  {/* Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+                    <div>
+                      <h4 className="text-xl font-bold text-gray-900 mb-1">
+                        {edu.degree} in {edu.fieldOfStudy}
+                      </h4>
+                      <p className="text-green-600 font-semibold">
+                        {edu.institution}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-1 text-gray-600 text-sm">
+                      <Calendar className="w-4 h-4" />
+                      <span>
+                        {edu.startDate} - {edu.endDate}
+                      </span>
+                    </div>
+                  </div>
 
-                        {/* Content */}
-                        <div className="flex-1">
-                          <h3 className="text-sm sm:text-base font-bold text-secondary-900 dark:text-white mb-1">
-                            {cert.name}
-                          </h3>
-                          <p className="text-xs sm:text-sm text-primary-600 dark:text-primary-400 mb-1">
-                            {cert.issuer}
-                          </p>
-                          <p className="text-xs text-secondary-500 dark:text-secondary-500">
-                            Issued {cert.date}
-                          </p>
-                        </div>
+                  {/* Grade Badge */}
+                  <div className="inline-block px-3 py-1 bg-green-50 text-green-700 text-sm font-medium rounded-full border border-green-200 mb-4">
+                    {edu.grade}
+                  </div>
 
-                        {/* Verified Badge */}
-                        <Award className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600 shrink-0" />
+                  {/* Description */}
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    {edu.description}
+                  </p>
+
+                  {/* Highlights - Academic Projects */}
+                  {edu.description &&
+                    edu.description.includes("Academic Projects:") && (
+                      <div className="mt-4 pt-4 border-t border-gray-200">
+                        <p className="text-sm font-semibold text-gray-900 mb-2">
+                          📚 Key Projects:
+                        </p>
+                        <ul className="text-sm text-gray-700 space-y-1">
+                          {edu.description
+                            .split("Academic Projects: ")[1]
+                            ?.split(", ")
+                            .map((project, i) => (
+                              <li key={i} className="flex gap-2">
+                                <span className="text-green-600">✓</span>
+                                {project}
+                              </li>
+                            ))}
+                        </ul>
                       </div>
-                    </Card>
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
+                    )}
 
-        {/* Summary Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8 }}
-          className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6"
-        >
-          <Card className="text-center p-6">
-            <Briefcase className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3 text-primary-600" />
-            <div className="text-2xl sm:text-3xl font-bold text-secondary-900 dark:text-white">
-              {experiences.length}
+                  {/* Focus Areas */}
+                  {edu.description && edu.description.includes("Focus:") && (
+                    <div className="mt-4 pt-4 border-t border-gray-200">
+                      <p className="text-sm font-semibold text-gray-900 mb-2">
+                        🎯 Focus Areas:
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {edu.description
+                          .split("Focus: ")[1]
+                          ?.split(", ")
+                          .slice(0, 3)
+                          .map((focus, i) => (
+                            <span
+                              key={i}
+                              className="px-3 py-1 bg-green-50 text-green-700 text-xs font-medium rounded-full border border-green-200"
+                            >
+                              {focus}
+                            </span>
+                          ))}
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              ))}
             </div>
-            <div className="text-sm sm:text-base text-secondary-600 dark:text-secondary-400">
-              Years Experience
-            </div>
-          </Card>
-
-          <Card className="text-center p-6">
-            <GraduationCap className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3 text-primary-600" />
-            <div className="text-2xl sm:text-3xl font-bold text-secondary-900 dark:text-white">
-              {education.length}
-            </div>
-            <div className="text-sm sm:text-base text-secondary-600 dark:text-secondary-400">
-              Degrees Earned
-            </div>
-          </Card>
-
-          <Card className="text-center p-6">
-            <Award className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3 text-primary-600" />
-            <div className="text-2xl sm:text-3xl font-bold text-secondary-900 dark:text-white">
-              {certifications.length}
-            </div>
-            <div className="text-sm sm:text-base text-secondary-600 dark:text-secondary-400">
-              Certifications
-            </div>
-          </Card>
+          </motion.div>
         </motion.div>
       </div>
     </section>

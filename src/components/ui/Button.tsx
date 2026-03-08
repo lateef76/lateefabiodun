@@ -62,6 +62,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ${className}
       `}
         disabled={disabled || isLoading}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         {...(props as any)}
       >
         {isLoading ? (

@@ -1,19 +1,41 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import {
-  Code2,
-  Server,
-  Database,
-  Wrench,
-  Users,
-  ChevronDown,
-  ChevronUp,
+  SiReact,
+  SiTypescript,
+  SiJavascript,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiMongodb,
+  SiGit,
+  SiVite,
+  SiPython,
+  SiFirebase,
+  SiSupabase,
+  SiExpress,
+  SiPostman,
+  SiCloudinary,
+  SiDocker,
+  SiVercel,
+  SiGithub,
+  SiGraphql,
+  SiFigma,
+  SiNestjs,
+  SiSketch,
+  SiN8N,
+  SiZapier,
+} from "react-icons/si";
+import {
+  Brain,
+  Zap,
+  Palette,
+  Paintbrush,
+  PenTool,
+  Phone,
+  Settings,
 } from "lucide-react";
 import SectionTitle from "@components/ui/SectionTitle";
-import SkillBadge from "@components/ui/SkillBadge";
-import Card from "@components/ui/Card";
-import { skillsByCategory } from "@data/skills";
 
 const Skills = () => {
   const [ref, inView] = useInView({
@@ -21,71 +43,90 @@ const Skills = () => {
     threshold: 0.1,
   });
 
-  const [expandedCategories, setExpandedCategories] = useState<string[]>([
-    "frontend",
-    "backend",
-    "database",
-    "tools",
-    "soft-skills",
-  ]);
-
-  const categories = [
+  const skillCategories = [
     {
-      id: "frontend",
       name: "Frontend Development",
-      icon: Code2,
-      color: "blue",
-      description: "Building responsive and interactive user interfaces",
+      color: "from-blue-500 to-blue-600",
+      skills: [
+        { name: "React", icon: SiReact },
+        { name: "TypeScript", icon: SiTypescript },
+        { name: "JavaScript", icon: SiJavascript },
+        { name: "Tailwind CSS", icon: SiTailwindcss },
+        { name: "Vite", icon: SiVite },
+        { name: "Figma", icon: SiFigma },
+      ],
     },
     {
-      id: "backend",
       name: "Backend Development",
-      icon: Server,
-      color: "green",
-      description: "Creating robust server-side applications and APIs",
+      color: "from-green-500 to-green-600",
+      skills: [
+        { name: "Node.js", icon: SiNodedotjs },
+        { name: "Express", icon: SiExpress },
+        { name: "NestJS", icon: SiNestjs },
+        { name: "Python", icon: SiPython },
+        { name: "GraphQL", icon: SiGraphql },
+        { name: "REST APIs", icon: Zap },
+      ],
     },
     {
-      id: "database",
-      name: "Database",
-      icon: Database,
-      color: "purple",
-      description: "Designing and managing data structures",
+      name: "Databases & Cloud",
+      color: "from-purple-500 to-purple-600",
+      skills: [
+        { name: "MongoDB", icon: SiMongodb },
+        { name: "Firebase", icon: SiFirebase },
+        { name: "Supabase", icon: SiSupabase },
+        { name: "Cloudinary", icon: SiCloudinary },
+      ],
     },
     {
-      id: "tools",
-      name: "Tools & Methods",
-      icon: Wrench,
-      color: "orange",
-      description: "Using modern development tools and practices",
+      name: "Tools & DevOps",
+      color: "from-orange-500 to-orange-600",
+      skills: [
+        { name: "Git", icon: SiGit },
+        { name: "GitHub", icon: SiGithub },
+        { name: "Postman", icon: SiPostman },
+        { name: "Docker", icon: SiDocker },
+        { name: "Vercel", icon: SiVercel },
+      ],
     },
     {
-      id: "soft-skills",
-      name: "Soft Skills",
-      icon: Users,
-      color: "pink",
-      description: "Essential skills for effective collaboration",
+      name: "AI & Emerging Tech",
+      color: "from-indigo-500 to-indigo-600",
+      skills: [
+        { name: "AI Chatbot", icon: Brain },
+        { name: "AI Voice Call", icon: Phone },
+        { name: "Automation", icon: Settings },
+        { name: "GenAI Integration", icon: Zap },
+        { name: "n8n", icon: SiN8N },
+        { name: "Zapier", icon: SiZapier },
+      ],
+    },
+    {
+      name: "UI/UX Design",
+      color: "from-pink-500 to-pink-600",
+      skills: [
+        { name: "Figma", icon: SiFigma },
+        { name: "Adobe XD", icon: PenTool },
+        { name: "Photoshop", icon: Paintbrush },
+        { name: "Sketch", icon: SiSketch },
+        { name: "Design Systems", icon: Palette },
+        { name: "Prototyping", icon: Palette },
+      ],
     },
   ];
 
-  const toggleCategory = (categoryId: string) => {
-    setExpandedCategories((prev) =>
-      prev.includes(categoryId)
-        ? prev.filter((id) => id !== categoryId)
-        : [...prev, categoryId],
-    );
-  };
-
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
     },
   };
 
-  const categoryVariants = {
+  const categoryVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -97,226 +138,109 @@ const Skills = () => {
     },
   };
 
-  const getCategoryColor = (color: string) => {
-    const colors = {
-      blue: "from-blue-500 to-blue-600",
-      green: "from-green-500 to-green-600",
-      purple: "from-purple-500 to-purple-600",
-      orange: "from-orange-500 to-orange-600",
-      pink: "from-pink-500 to-pink-600",
-    };
-    return colors[color as keyof typeof colors];
+  const skillVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+      },
+    },
   };
 
   return (
     <section
       id="skills"
-      className="section-padding bg-secondary-50 dark:bg-secondary-900"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white py-20"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle
-          title="Skills & Expertise"
-          subtitle="A comprehensive overview of my technical skills and competencies"
-          align="center"
-          gradient
-        />
+      {/* Background gradient blobs */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-2000" />
+      </div>
 
-        {/* Skills Overview */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-8 lg:mb-12"
+          className="flex flex-col items-center"
         >
-          {categories.map((category) => (
-            <motion.div
-              key={category.id}
-              variants={categoryVariants}
-              whileHover={{ y: -5 }}
-              className="lg:hidden"
-            >
-              <Card className="h-full">
-                <div className="flex items-center gap-3 mb-3">
-                  <div
-                    className={`p-2 rounded-lg bg-linear-to-br ${getCategoryColor(category.color)}`}
-                  >
-                    <category.icon className="w-4 h-4 text-white" />
-                  </div>
-                  <h3 className="text-base sm:text-lg font-semibold text-secondary-900 dark:text-white">
-                    {
-                      skillsByCategory[
-                        category.id as keyof typeof skillsByCategory
-                      ].length
-                    }
+          {/* Section Title */}
+          <motion.div variants={categoryVariants} className="mb-16 text-center">
+            <SectionTitle
+              title="Skills & Technologies"
+              subtitle="A comprehensive overview of my technical expertise and tools I work with"
+              align="center"
+              gradient
+            />
+          </motion.div>
+
+          {/* Skills Categories Grid */}
+          <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {skillCategories.map((category, index) => (
+              <motion.div
+                key={index}
+                variants={categoryVariants}
+                whileHover={{ y: -10 }}
+                className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+              >
+                {/* Category Header */}
+                <div className={`bg-linear-to-r ${category.color} p-6`}>
+                  <h3 className="text-xl font-bold text-white">
+                    {category.name}
                   </h3>
                 </div>
-                <p className="text-xs sm:text-sm text-secondary-600 dark:text-secondary-400">
-                  {category.description}
-                </p>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
 
-        {/* Detailed Skills by Category */}
-        <div className="space-y-6 sm:space-y-8">
-          {categories.map((category, categoryIndex) => {
-            const categorySkills =
-              skillsByCategory[category.id as keyof typeof skillsByCategory];
-            const isExpanded = expandedCategories.includes(category.id);
-
-            return (
-              <motion.div
-                key={category.id}
-                variants={categoryVariants}
-                initial="hidden"
-                animate={inView ? "visible" : "hidden"}
-                transition={{ delay: categoryIndex * 0.1 }}
-              >
-                <Card className="overflow-hidden">
-                  {/* Category Header */}
-                  <div
-                    className="flex items-center justify-between p-4 sm:p-6 cursor-pointer"
-                    onClick={() => toggleCategory(category.id)}
+                {/* Skills Grid */}
+                <div className="p-6">
+                  <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate={inView ? "visible" : "hidden"}
+                    className="grid grid-cols-2 gap-4"
                   >
-                    <div className="flex items-center gap-3 sm:gap-4">
-                      <div
-                        className={`p-2 sm:p-3 rounded-lg bg-linear-to-br ${getCategoryColor(category.color)}`}
-                      >
-                        <category.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-secondary-900 dark:text-white">
-                          {category.name}
-                        </h3>
-                        <p className="text-xs sm:text-sm text-secondary-600 dark:text-secondary-400">
-                          {category.description} • {categorySkills.length}{" "}
-                          skills
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs sm:text-sm text-secondary-500">
-                        {isExpanded ? "Show less" : "Show more"}
-                      </span>
-                      {isExpanded ? (
-                        <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5 text-secondary-500" />
-                      ) : (
-                        <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-secondary-500" />
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Skills Grid */}
-                  <AnimatePresence>
-                    {isExpanded && (
+                    {category.skills.map((skill, skillIndex) => (
                       <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{
-                          opacity: 1,
-                          height: "auto",
-                          transition: {
-                            height: { duration: 0.3 },
-                            opacity: { duration: 0.3, delay: 0.1 },
-                          },
-                        }}
-                        exit={{
-                          opacity: 0,
-                          height: 0,
-                          transition: {
-                            height: { duration: 0.3 },
-                            opacity: { duration: 0.2 },
-                          },
-                        }}
-                        className="border-t border-secondary-200 dark:border-secondary-700"
+                        key={skillIndex}
+                        variants={skillVariants}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex flex-col items-center gap-3 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors duration-300 cursor-pointer group"
                       >
-                        <div className="p-4 sm:p-6">
-                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                            {categorySkills.map((skill, index) => (
-                              <SkillBadge
-                                key={skill.name}
-                                skill={skill}
-                                index={index}
-                              />
-                            ))}
-                          </div>
+                        <div className="text-3xl sm:text-4xl group-hover:scale-125 transition-transform duration-300">
+                          <skill.icon className="text-gray-700" />
                         </div>
+                        <span className="text-xs sm:text-sm font-semibold text-gray-700 text-center">
+                          {skill.name}
+                        </span>
                       </motion.div>
-                    )}
-                  </AnimatePresence>
-                </Card>
+                    ))}
+                  </motion.div>
+                </div>
               </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Skill Level Legend */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8 }}
-          className="mt-8 sm:mt-12 p-4 sm:p-6 bg-white dark:bg-secondary-800 rounded-xl shadow-lg"
-        >
-          <h4 className="text-sm sm:text-base font-semibold text-secondary-900 dark:text-white mb-4">
-            Proficiency Levels
-          </h4>
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4">
-            {[
-              { level: 1, label: "Beginner", color: "bg-red-100 text-red-700" },
-              {
-                level: 2,
-                label: "Elementary",
-                color: "bg-orange-100 text-orange-700",
-              },
-              {
-                level: 3,
-                label: "Intermediate",
-                color: "bg-yellow-100 text-yellow-700",
-              },
-              {
-                level: 4,
-                label: "Advanced",
-                color: "bg-green-100 text-green-700",
-              },
-              {
-                level: 5,
-                label: "Expert",
-                color: "bg-primary-100 text-primary-700",
-              },
-            ].map((level) => (
-              <div key={level.level} className="flex items-center gap-2">
-                <div
-                  className={`w-3 h-3 rounded-full ${level.color.split(" ")[0]}`}
-                />
-                <span className="text-xs sm:text-sm text-secondary-600 dark:text-secondary-400">
-                  {level.label}
-                </span>
-              </div>
             ))}
           </div>
-        </motion.div>
 
-        {/* Learning Path */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1 }}
-          className="mt-8 sm:mt-12 text-center"
-        >
-          <p className="text-sm sm:text-base text-secondary-600 dark:text-secondary-400">
-            🚀 Currently learning:{" "}
-            <span className="font-semibold text-primary-600">GraphQL</span> and{" "}
-            <span className="font-semibold text-primary-600">AWS</span>
-          </p>
-          <div className="w-full max-w-md mx-auto mt-4 h-2 bg-secondary-200 dark:bg-secondary-700 rounded-full overflow-hidden">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={inView ? { width: "75%" } : {}}
-              transition={{ delay: 1.2, duration: 1 }}
-              className="h-full bg-linear-to-r from-primary-500 to-primary-600 rounded-full"
-            />
-          </div>
+          {/* Additional Info */}
+          <motion.div
+            variants={categoryVariants}
+            className="mt-16 max-w-2xl text-center"
+          >
+            <div className="bg-linear-to-r from-blue-50 to-purple-50 rounded-2xl border border-blue-200 p-8">
+              <h4 className="text-lg font-bold text-gray-900 mb-3">
+                💡 Constantly Learning
+              </h4>
+              <p className="text-gray-700">
+                I'm passionate about staying up-to-date with the latest
+                technologies and best practices. I'm always exploring new
+                frameworks, tools, and methodologies to improve my craft and
+                deliver better solutions.
+              </p>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

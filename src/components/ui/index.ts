@@ -1,8 +1,3 @@
 export { default as Button } from './Button'
-export { default as Card } from './Card'
-export { default as Container } from './Container'
 export { default as SectionTitle } from './SectionTitle'
-export { default as SkillBadge } from './SkillBadge'
-export { default as TimelineItem } from './TimelineItem'
 export { default as ProjectCard } from './ProjectCard'
-export { default as SocialIcon } from './SocialIcon'

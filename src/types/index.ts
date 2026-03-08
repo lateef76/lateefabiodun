@@ -11,15 +11,11 @@ export interface Project {
   featured: boolean
   category: 'frontend' | 'backend' | 'fullstack' | 'mobile'
   completionDate: string
-}
-
-// Skill Types
-export interface Skill {
-  name: string
-  icon: string
-  category: 'frontend' | 'backend' | 'database' | 'tools' | 'soft-skills'
-  proficiency: 1 | 2 | 3 | 4 | 5
-  yearsOfExperience?: number
+  tags?: {
+    difficulty: 'beginner' | 'intermediate' | 'advanced'
+    buildTime: string
+    teamSize: string
+  }
 }
 
 // Experience Types
