@@ -70,7 +70,7 @@ const Hero = () => {
             {/* Greeting */}
             <motion.div variants={itemVariants}>
               <span className="inline-block px-4 py-2 bg-primary-50 text-primary-600 font-semibold text-sm rounded-full mb-6">
-                👋 Welcome to my portfolio
+                Welcome to my portfolio
               </span>
             </motion.div>
 
@@ -160,7 +160,7 @@ const Hero = () => {
                 }}
                 className="absolute -top-6 -right-6 w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-xl border-4 border-primary-100"
               >
-                <span className="text-3xl">⚡</span>
+                <span className="text-3xl"></span>
               </motion.div>
             </div>
           </motion.div>

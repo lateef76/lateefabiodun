@@ -231,7 +231,7 @@ const Skills = () => {
           >
             <div className="bg-linear-to-r from-blue-50 to-purple-50 rounded-2xl border border-blue-200 p-8">
               <h4 className="text-lg font-bold text-gray-900 mb-3">
-                💡 Constantly Learning
+                Constantly Learning
               </h4>
               <p className="text-gray-700">
                 I'm passionate about staying up-to-date with the latest

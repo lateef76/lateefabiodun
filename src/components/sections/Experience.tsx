@@ -185,7 +185,7 @@ const Experience = () => {
                     edu.description.includes("Academic Projects:") && (
                       <div className="mt-4 pt-4 border-t border-gray-200">
                         <p className="text-sm font-semibold text-gray-900 mb-2">
-                          📚 Key Projects:
+                          Key Projects:
                         </p>
                         <ul className="text-sm text-gray-700 space-y-1">
                           {edu.description
@@ -193,7 +193,7 @@ const Experience = () => {
                             ?.split(", ")
                             .map((project, i) => (
                               <li key={i} className="flex gap-2">
-                                <span className="text-green-600">✓</span>
+                                <span className="text-green-600">•</span>
                                 {project}
                               </li>
                             ))}
@@ -205,7 +205,7 @@ const Experience = () => {
                   {edu.description && edu.description.includes("Focus:") && (
                     <div className="mt-4 pt-4 border-t border-gray-200">
                       <p className="text-sm font-semibold text-gray-900 mb-2">
-                        🎯 Focus Areas:
+                        Focus Areas:
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {edu.description

@@ -38,28 +38,28 @@ const Contact = () => {
 
   const aiTopics = [
     {
-      label: "🤝 Hire Me",
+      label: "Hire Me",
       subject: "Job Opportunity",
       message: (name: string) =>
         `Hi Abiodun,\n\nMy name is ${name || "[Your Name]"}. I came across your portfolio and I'm impressed by your work. We have an exciting opportunity that I believe aligns with your skills and experience.\n\nI'd love to schedule a call to discuss this further. When would be a convenient time for you?\n\nBest regards`,
     },
     {
-      label: "🚀 Project Collab",
+      label: "Project Collab",
       subject: "Project Collaboration",
       message: (name: string) =>
         `Hey Abiodun,\n\nI'm ${name || "[Your Name]"} and I have a project idea that I think could benefit from your expertise. I'd love to explore the possibility of collaborating together.\n\nCould we set up a time to discuss the project scope and how we might work together?\n\nCheers`,
     },
     {
-      label: "💼 Freelance Work",
+      label: "Freelance Work",
       subject: "Freelance Project Inquiry",
       message: (name: string) =>
         `Hello Abiodun,\n\nI'm ${name || "[Your Name]"}. I'm looking for a skilled developer to help with a freelance project. After reviewing your portfolio, I believe you'd be a great fit.\n\nHere's a brief overview of what I need:\n- [Describe your project]\n- [Timeline expectations]\n- [Budget range]\n\nLooking forward to hearing from you!`,
     },
     {
-      label: "👋 Say Hello",
+      label: "Say Hello",
       subject: "Just Saying Hello!",
       message: (name: string) =>
-        `Hi Abiodun! 👋\n\nI'm ${name || "[Your Name]"}. I stumbled upon your portfolio and really liked what I saw! Your projects are impressive and your skills are top-notch.\n\nJust wanted to reach out and connect. Keep up the amazing work!\n\nBest wishes`,
+        `Hi Abiodun!\n\nI'm ${name || "[Your Name]"}. I stumbled upon your portfolio and really liked what I saw! Your projects are impressive and your skills are top-notch.\n\nJust wanted to reach out and connect. Keep up the amazing work!\n\nBest wishes`,
     },
   ];
 
@@ -113,7 +113,7 @@ const Contact = () => {
         subject.includes("hi") ||
         subject.includes("hey")
       ) {
-        generated = `Hi Abiodun! 👋\n\nI'm ${name}. Just wanted to reach out after seeing your portfolio. Really impressive work across the board!\n\nWould love to stay connected. Keep building awesome things!\n\nBest wishes`;
+        generated = `Hi Abiodun!\n\nI'm ${name}. Just wanted to reach out after seeing your portfolio. Really impressive work across the board!\n\nWould love to stay connected. Keep building awesome things!\n\nBest wishes`;
       } else {
         generated = `Hi Abiodun,\n\nI'm ${name}. I'm reaching out regarding "${formData.subject}". I came across your portfolio and would love to connect with you about this.\n\nPlease let me know a good time to discuss further.\n\nBest regards`;
       }
@@ -638,7 +638,7 @@ const Contact = () => {
           >
             <div className="bg-gray-50 rounded-2xl border border-gray-200 p-6">
               <p className="text-gray-700 text-sm">
-                📍 Based in Cape Coast, Ghana • University of Cape Coast •
+                Based in Cape Coast, Ghana • University of Cape Coast •
                 Available for remote work worldwide
               </p>
               <p className="text-xs text-gray-500 mt-2">
